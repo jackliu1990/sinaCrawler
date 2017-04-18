@@ -2,8 +2,8 @@ package crawler.sina.login;
 
 public class Constant {
     public static boolean enableProxy = false;
-    public static String personalHomePage = "你的主页";
-    public static String weiboUsername = "你的用户名";
-    public static String weiboPassword = "你的密码";
+    public static String personalHomePage = "http://www.weibo.com/jackliu1990/home";
+    public static String weiboUsername = "15527244406";
+    public static String weiboPassword = "jack!=2594147";
     public static int hourbefore = 0;
 }
