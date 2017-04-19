@@ -33,7 +33,7 @@ public class ParserUserInfo {
 		JSONArray json = null;
 		String  tags= "";
 		String str = "";
-		String regex = "domid\":\"Pl_Official_PersonalInfo(.*)\"html\":\"(.*)\"\\}\\)<\\/script>";
+		String regex = "$CONFIG['islogin']=";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
    		while (matcher.find()) {

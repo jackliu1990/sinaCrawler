@@ -18,7 +18,8 @@ public class Main {
 		long startTime = System.currentTimeMillis();
 		LoginSina ls = new LoginSina(Constant.weiboUsername, Constant.weiboPassword);
 		ls.dologinSina();
-		BangDispatch.bang("shishang", "day");
+		CrawSina crawSina = new CrawSina();
+		crawSina.getUserInfo("jackliu1990");
 		long endTime = System.currentTimeMillis();
 		long useTime = endTime - startTime;
 		System.out.println("共用时:" + useTime);
