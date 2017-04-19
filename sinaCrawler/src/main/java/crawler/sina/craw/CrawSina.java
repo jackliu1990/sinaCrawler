@@ -18,6 +18,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import com.gargoylesoftware.htmlunit.WebRequest;
+
 import crawler.sina.login.Constant;
 import crawler.sina.login.LoginSina;
 import crawler.sina.parser.ParserBangList;
@@ -191,6 +193,7 @@ public class CrawSina {
 		}
 		return "error.";
 	}
+	
 	/**
 	 * @author whp
 	 * @param dataType:风云榜时间类型 day week month
