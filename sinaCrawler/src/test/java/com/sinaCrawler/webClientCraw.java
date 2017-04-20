@@ -5,6 +5,8 @@ import java.net.MalformedURLException;
 import java.util.Iterator;  
 import java.util.List;
 
+import org.w3c.dom.NodeList;
+
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
@@ -99,8 +101,12 @@ public class webClientCraw {
         WebClient client = new WebClient(BrowserVersion.CHROME);
         client.getOptions().setJavaScriptEnabled(true);    //默认执行js，如果不执行js，则可能会登录失败，因为用户名密码框需要js来绘制。
         client.getOptions().setCssEnabled(false);
+        client.getOptions().setUseInsecureSSL(true);//支持https
         client.setAjaxController(new NicelyResynchronizingAjaxController());
-        client.getOptions().setThrowExceptionOnScriptError(false);        
+        client.getOptions().setThrowExceptionOnScriptError(false);  
+        client.getOptions().setDoNotTrackEnabled(false);
+        client.setJavaScriptTimeout(8000);//设置js运行超时时间
+        client.waitForBackgroundJavaScript(500);//设置页面等待js响应时间,
 
         HtmlPage page = client.getPage("http://login.sina.com.cn/sso/login.php?client=ssologin.js(v1.3.16)");
         //System.out.println(page.asText());
@@ -116,6 +122,7 @@ public class webClientCraw {
         System.out.println("\n\n\n");
         //System.out.println(page2.asText());
 
+<<<<<<< HEAD
         HtmlPage page3 = client.getPage("http://weibo.com/3977723914/fans?rightmod=1&wvr=6");
         try {
 			Thread.sleep(5000);
@@ -130,8 +137,29 @@ public class webClientCraw {
         while(iter.hasNext()){  
             System.out.println(iter.next().getTextContent());  
         }  
+=======
+        HtmlPage page3 = client.getPage("http://weibo.com/jackliu1990/info");
+        try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+        System.out.println(" : " + page3.asXml());
+        
+       // final HtmlDivision div = page3.getHtmlElementById("plc_main");  
+       // DomNodeList<DomElement> listul= page3.getElementsByTagName("ul");
+        //DomElement  ul =listul.get(listul.getLength()-1);
+       // System.out.println(" : " + ul.asXml());
+      //获取子元素  
+        //Iterator<DomElement> iter = ul.getChildElements().iterator();  
+       /* while(iter.hasNext()){  
+        	 System.out.println(iter.next().getTextContent());  
+           // System.out.println(iter.next().getTextContent());  
+        }  */
+>>>>>>> 40560cb4c22535d24deb13309d9e86bf858fd1fd
         //获取所有输出链接  
-        for(HtmlAnchor anchor : page3.getAnchors()){  
+        /*for(HtmlAnchor anchor : page3.getAnchors()){  
             System.out.println(anchor.getTextContent()+" : "+anchor.getAttribute("href"));  
         } */
         client.close();
