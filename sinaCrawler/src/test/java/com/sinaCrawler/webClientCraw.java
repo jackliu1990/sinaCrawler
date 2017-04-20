@@ -117,17 +117,23 @@ public class webClientCraw {
         //System.out.println(page2.asText());
 
         HtmlPage page3 = client.getPage("http://weibo.com/3977723914/fans?rightmod=1&wvr=6");
-        System.out.println(" : " + page3.asText());
+        try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        System.out.println(" : " + page3.asXml());
         final HtmlDivision div = page3.getHtmlElementById("plc_main");  
       //获取子元素  
-        Iterator<DomElement> iter = div.getChildElements().iterator();  
+        /*Iterator<DomElement> iter = div.getChildElements().iterator();  
         while(iter.hasNext()){  
             System.out.println(iter.next().getTextContent());  
         }  
         //获取所有输出链接  
         for(HtmlAnchor anchor : page3.getAnchors()){  
             System.out.println(anchor.getTextContent()+" : "+anchor.getAttribute("href"));  
-        }  
+        } */
         client.close();
     }
 }

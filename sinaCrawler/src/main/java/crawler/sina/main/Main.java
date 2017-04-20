@@ -13,13 +13,15 @@ public class Main {
 	/**
 	 * @author whp
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		long startTime = System.currentTimeMillis();
 		LoginSina ls = new LoginSina(Constant.weiboUsername, Constant.weiboPassword);
 		ls.dologinSina();
 		CrawSina crawSina = new CrawSina();
-		crawSina.getUserInfo("jackliu1990");
+		//crawSina.getUserInfo("jackliu1990");
+		crawSina.getFansListByUid("3977723914", "1");
 		long endTime = System.currentTimeMillis();
 		long useTime = endTime - startTime;
 		System.out.println("共用时:" + useTime);

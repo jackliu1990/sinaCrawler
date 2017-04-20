@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -135,7 +137,7 @@ public class CrawSina {
 			long s = random.nextInt(9)+1;
 			Thread.sleep(s*1000);
 			HttpClient client = new DefaultHttpClient();
-			String url = "http://weibo.com/"+ uid +"/fans?&uid=&tag=&page="+ page;
+			String url = "http://weibo.com/"+uid+"/fans?Pl_Official_RelationFans__88_page="+page;
 			HttpGet request = new HttpGet(url);
 			request.setHeader("Cookie", CrawSina.Cookie + CrawSina.CookieTC);
 			request.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 5.1; rv:39.0) Gecko/20100101 Firefox/39.0");
@@ -149,7 +151,6 @@ public class CrawSina {
 				CrawSina.CookieTC = response.getLastHeader("Set-Cookie").getValue();
 			}
 			String responseText = EntityUtils.toString(response.getEntity());
-			System.out.println(responseText);
 			uidList = ParserFansList.getFansList(responseText);
 			client.getConnectionManager().shutdown();
 		} catch (InterruptedException e) {
@@ -192,6 +193,21 @@ public class CrawSina {
 			e.printStackTrace();
 		}
 		return "error.";
+	}
+	
+	
+	public void explainUserInfo(String content){
+		String test="<html><script>FM.view({})</script><script>FM.view({})</script><script>FM.view({})</script>";
+		Pattern p = Pattern.compile("\\<script>FM.view(.*?)\\</script>");
+		Matcher m = p.matcher(content);
+		List<String> rsList=new ArrayList<String>();
+		List<String> liList=new ArrayList<String>();
+		while(m.find()){
+		String t_rs=m.group(1);
+		if(t_rs.contains("html") && t_rs.contains("pt_li S_line2")){
+		rsList.add(t_rs);
+		}
+		}
 	}
 	
 	/**
