@@ -180,9 +180,11 @@ public class CrawSina {
 			HttpResponse response;
 			response = client.execute(request);
 			String responseText = HttpUtils.getStringFromResponse(response);
-			if(!responseText.contains("error_back") && !responseText.contains("http://weibo.com/sorry"))
-				ParserUserInfo.userInfo(responseText, uid);
+			System.out.println(responseText);
+			/*if(!responseText.contains("error_back") && !responseText.contains("http://weibo.com/sorry"))
+				ParserUserInfo.userInfo(responseText, uid);*/
 			client.getConnectionManager().shutdown();
+		
 			return responseText;
 		}catch (IOException e) {
 			e.printStackTrace();
