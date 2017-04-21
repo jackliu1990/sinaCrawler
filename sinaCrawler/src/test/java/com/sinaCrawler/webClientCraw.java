@@ -121,8 +121,7 @@ public class webClientCraw {
         //登录完成，现在可以爬取任意你想要的页面了。
         System.out.println("\n\n\n");
         //System.out.println(page2.asText());
-
-<<<<<<< HEAD
+        
         HtmlPage page3 = client.getPage("http://weibo.com/3977723914/fans?rightmod=1&wvr=6");
         try {
 			Thread.sleep(5000);
@@ -137,7 +136,6 @@ public class webClientCraw {
         while(iter.hasNext()){  
             System.out.println(iter.next().getTextContent());  
         }  
-=======
         HtmlPage page3 = client.getPage("http://weibo.com/jackliu1990/info");
         try {
 		Thread.sleep(10000);
@@ -157,7 +155,6 @@ public class webClientCraw {
         	 System.out.println(iter.next().getTextContent());  
            // System.out.println(iter.next().getTextContent());  
         }  */
->>>>>>> 40560cb4c22535d24deb13309d9e86bf858fd1fd
         //获取所有输出链接  
         /*for(HtmlAnchor anchor : page3.getAnchors()){  
             System.out.println(anchor.getTextContent()+" : "+anchor.getAttribute("href"));  
