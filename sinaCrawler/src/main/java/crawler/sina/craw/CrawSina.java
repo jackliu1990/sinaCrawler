@@ -22,6 +22,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.gargoylesoftware.htmlunit.WebRequest;
 
+import crawler.sina.bean.SinaUserInfo;
 import crawler.sina.login.Constant;
 import crawler.sina.login.LoginSina;
 import crawler.sina.parser.ParserBangList;
@@ -130,8 +131,8 @@ public class CrawSina {
 	 * @param page 页码 (最大数为5)
 	 * @return 抓取用户粉丝列表
 	 */
-	public List<String> getFansListByUid(String uid, String page) throws IOException{
-		List<String> uidList = null;
+	public List<SinaUserInfo> getFansListByUid(String uid, String page) throws IOException{
+		List<SinaUserInfo> uidList = null;
 		try {
 			Random random = new Random();
 			long s = random.nextInt(9)+1;
