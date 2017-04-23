@@ -12,18 +12,18 @@ public class ParserMusicMessageList {
 	
 	public static List<MusicMessage> getMusicMessageList(String text) {
 		List<MusicMessage> MusicMessageList = new ArrayList<MusicMessage>();
-		
 		Pattern textp = Pattern.compile("\\<div class\\=\\\\\"WB\\_text\\ W\\_f14\\\\\"(.*?)\\<\\\\/div>");
 		Matcher textm = textp.matcher(text);
 		while(textm.find()){
-			 MusicMessage musicMessage = new MusicMessage();
+			MusicMessage musicMessage = new MusicMessage();
 			String musicMes = textm.group(1);
-			Pattern sharePatter = Pattern.compile("\\\\\"feed_list_content\\\\\"(.*?)>(.*?)\\<a");
-			Matcher shareMatch = sharePatter.matcher(musicMes);
-			if(shareMatch.find()){
-				String shareContent=replaceSpatialCode.replaceBlank(shareMatch.group(2));
-				musicMessage.setShareContent(shareContent);
+			String regEx="([\u4e00-\u9fa5]+)";  
+			Matcher matcher = Pattern.compile(regEx).matcher(musicMes);
+		    StringBuffer shareContent = new StringBuffer();
+			while(matcher.find()){
+				shareContent.append(matcher.group());
 			}
+			musicMessage.setShareContent(shareContent.toString());
 			//usercard=\"name=陳綺貞cheerego\">@陳綺貞cheerego<\/a>《我喜欢上你时的内心活动》 <a 
 			Pattern singSongPatter = Pattern.compile("usercard\\=\\\\\"name\\=(.*?)\\\\\"\\>(.*?)\\<\\\\/a>(.*?)\\<a");
 			Matcher singSongMatch = singSongPatter.matcher(musicMes);

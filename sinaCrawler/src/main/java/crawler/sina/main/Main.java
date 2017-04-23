@@ -24,8 +24,8 @@ public class Main {
 		loginSina();
 		//BangDispatch.bangUserMessage("3977723914",50);
 		//getMusicMessage("5150801187","1");
-		//getAllMusicShare();
-		getAllContentShare();
+		getAllMusicShare();
+		//getAllContentShare();
 	}
 	
 	public static void getMusicMessage(String uid,String page) throws IOException{

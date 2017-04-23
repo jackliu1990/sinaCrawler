@@ -25,7 +25,6 @@ public class ParserContentMessageList {
 			}
 			contentMessage.setShareContent(shareContent.toString());
 			ContentMessageList.add(contentMessage);
-			System.out.println(shareContent);
 		}
 		
 		//mod=weibotime\" title=\"2017-04-22 00:14\" date
