@@ -7,7 +7,7 @@ public class MusicMessage {
 	private String shareContent;
 	private String singer;
 	private String songName;
-	private Date pubDate;
+	private String pubDate;
 	
 	public void setUid(String uid){
 		this.uid=uid;
@@ -42,11 +42,11 @@ public class MusicMessage {
 		return this.songName;
 	}
 	
-	public void setPubDate(Date pubDate){
+	public void setPubDate(String pubDate){
 		this.pubDate=pubDate;
 	}
 	
-	public Date getPubDate(){
+	public String getPubDate(){
 		return this.pubDate;
 	}
 	

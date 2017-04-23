@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class ParserLearn {
 	  public static void main( String[] args ){
-         String b ="<ul class=\"follow_list\">asasaasasasaasasasasas</ul>";
+         /*String b ="<ul class=\"follow_list\">asasaasasasaasasasasas</ul>";
          
          String reg="<ul class=\"follow_list\">(.*)</ul>";
          List<String> c =getTeacherList(reg,b);
@@ -16,7 +16,8 @@ public class ParserLearn {
          
           String a ="教师10(0010)";
           List<String> test= getTeacherList("(?<=\\()(.+?)(?=\\))",a);
-          System.out.println(test);
+          System.out.println(test);*/
+		  test();
 	  }
 	  
 	  public static List<String> getTeacherList(String reg,String managers){
@@ -27,5 +28,18 @@ public class ParserLearn {
 	            ls.add(matcher.group());
 	        return ls;
 	    }
+	  
+	  
+	  public static void test (){
+		    String str = "……^1dsf  の  adS   DFASFSADF阿德斯防守对方asdfsadf37《？：？@%#￥%#￥%@#$%#@$%^><?1234";  
+		    String regEx="[a-zA-Z0-9\\u4e00-\\u9fa5]";  
+		        Pattern   p   =   Pattern.compile(regEx);     
+		        Matcher   m   =   p.matcher(str);
+		        StringBuffer sb = new StringBuffer();
+		        while(m.find()){
+		        sb.append(m.group());
+		        }
+		        System.out.println(sb);
+		    }
 
 }

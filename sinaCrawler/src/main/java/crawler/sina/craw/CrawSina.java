@@ -22,11 +22,15 @@ import org.apache.http.util.EntityUtils;
 
 import com.gargoylesoftware.htmlunit.WebRequest;
 
+import crawler.sina.bean.ContentMessage;
+import crawler.sina.bean.MusicMessage;
 import crawler.sina.bean.SinaUserInfo;
 import crawler.sina.login.Constant;
 import crawler.sina.login.LoginSina;
 import crawler.sina.parser.ParserBangList;
+import crawler.sina.parser.ParserContentMessageList;
 import crawler.sina.parser.ParserFansList;
+import crawler.sina.parser.ParserMusicMessageList;
 import crawler.sina.parser.ParserUserInfo;
 import crawler.sina.utils.HttpUtils;
 
@@ -182,9 +186,8 @@ public class CrawSina {
 			HttpResponse response;
 			response = client.execute(request);
 			String responseText = HttpUtils.getStringFromResponse(response);
-			System.out.println(responseText);
-			/*if(!responseText.contains("error_back") && !responseText.contains("http://weibo.com/sorry"))
-				ParserUserInfo.userInfo(responseText, uid);*/
+			if(!responseText.contains("error_back") && !responseText.contains("http://weibo.com/sorry"))
+				ParserUserInfo.userInfo(responseText, uid);
 			client.getConnectionManager().shutdown();
 		
 			return responseText;
@@ -211,6 +214,34 @@ public class CrawSina {
 		rsList.add(t_rs);
 		}
 		}
+	}
+	
+	
+	public List<MusicMessage> getMusicMessage(String uid,String page) throws IOException{
+		String url = "http://weibo.com/"+uid+"/profile?is_music=1&page="+page;
+		List<MusicMessage> musicMesList = null;
+		HttpClient client = new DefaultHttpClient();
+		HttpGet request = new HttpGet(url);
+		request.setHeader("Cookie", CrawSina.Cookie);
+		HttpResponse response = client.execute(request);
+		String responseText = HttpUtils.getStringFromResponse(response);
+		musicMesList = ParserMusicMessageList.getMusicMessageList(responseText);
+		client.getConnectionManager().shutdown();
+		return musicMesList;	
+	}
+	
+	
+	public List<ContentMessage> getContentMesage(String uid,String page) throws ClientProtocolException, IOException{
+		String url = "http://weibo.com/"+uid+"/profile?is_ori=1&page="+page;
+		List<ContentMessage> contentList = null;
+		HttpClient client = new DefaultHttpClient();
+		HttpGet request = new HttpGet(url);
+		request.setHeader("Cookie", CrawSina.Cookie);
+		HttpResponse response = client.execute(request);
+		String responseText = HttpUtils.getStringFromResponse(response);
+		contentList = ParserContentMessageList.getContentMessageList(responseText);
+		client.getConnectionManager().shutdown();
+		return contentList;	
 	}
 	
 	/**
